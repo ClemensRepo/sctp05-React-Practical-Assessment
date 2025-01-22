@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
 
@@ -28,6 +28,7 @@ function HomePage() {
             imageUrl={product.image}
             productName={product.name}
             price={product.price.toFixed(2)}
+            
           />
         </div>
       );

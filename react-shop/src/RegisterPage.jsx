@@ -28,22 +28,27 @@ function RegisterPage() {
     country: ''
   };
 
-  const [, setLocation] = useLocation();
-  const [showSuccess, setShowSuccess] = useState(false);
-  const { showMessage } = useFlashMessage();
-  const handleSubmit = async (values, formikHelpers) => {
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, values);
-      console.log('Registration successful:', response.data);
-      showMessage('Registration successful!', 'success');
-    } catch (error) {
-      console.error('Registration failed:', error.response?.data || error.message);
-      showMessage('Registration failed. Please try again.', 'error');
-    } finally {
-      formikHelpers.setSubmitting(false);
-      setLocation('/');
-    }
-  };
+  const handleSubmit = (values, formikHelpers) => {
+    console.log('Form values', values);
+    formikHelpers.setSubmitting(false);
+  }
+
+  // const [, setLocation] = useLocation();
+  // const [showSuccess, setShowSuccess] = useState(false);
+  // const { showMessage } = useFlashMessage();
+  // const handleSubmit = async (values, formikHelpers) => {
+  //   try {
+  //     const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, values);
+  //     console.log('Registration successful:', response.data);
+  //     showMessage('Registration successful!', 'success');
+  //   } catch (error) {
+  //     console.error('Registration failed:', error.response?.data || error.message);
+  //     showMessage('Registration failed. Please try again.', 'error');
+  //   } finally {
+  //     formikHelpers.setSubmitting(false);
+  //     setLocation('/');
+  //   }
+  // };
 
   return (
     <div className="container mt-5">
@@ -56,6 +61,7 @@ function RegisterPage() {
         {(formik) => (
           <Form>
             <div className="mb-3">
+            {formik.errors.name && formik.touched.name ? <div className="text-danger">{formik.errors.name}</div> : null}
               <label htmlFor="name" className="form-label">Name</label>
               <Field
                 type="text"
@@ -66,6 +72,7 @@ function RegisterPage() {
             </div>
 
             <div className="mb-3">
+            {formik.errors.name && formik.touched.email ? <div className="text-danger">{formik.errors.email}</div> : null}
               <label htmlFor="email" className="form-label">Email</label>
               <Field
                 type="email"
@@ -76,6 +83,7 @@ function RegisterPage() {
             </div>
 
             <div className="mb-3">
+            {formik.errors.name && formik.touched.password ? <div className="text-danger">{formik.errors.password}</div> : null}
               <label htmlFor="password" className="form-label">Password</label>
               <Field
                 type="password"
@@ -86,6 +94,7 @@ function RegisterPage() {
             </div>
 
             <div className="mb-3">
+            {formik.errors.name && formik.touched.confirmPassword ? <div className="text-danger">{formik.errors.confirmPassword}</div> : null}
               <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
               <Field
                 type="password"
@@ -158,7 +167,7 @@ function RegisterPage() {
                 </label>
               </div>
             </div>
-            {formik.errors.name && formik.touched.name ? <div className="text-danger">{formik.errors.name}</div> : null}
+            
             <div className="mb-3">
               <label htmlFor="country" className="form-label">Country</label>
               <Field

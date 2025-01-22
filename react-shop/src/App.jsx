@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import HomePage from './HomePage';
 import { Route, Switch } from 'wouter';
+import ShoppingCart from './ShoppingCart';
 import ProductsPage from './ProductsPage';
 import RegisterPage from './RegisterPage';
 import { useFlashMessage } from './FlashMessageStore';
@@ -34,6 +35,7 @@ function App() {
         <Route path="/" component={HomePage} />
         <Route path="/products" component={ProductsPage} />
         <Route path="/register" component={RegisterPage} />
+        <Route path="/cart" component={ShoppingCart} />
       </Switch>
 
       <footer className="bg-dark text-white text-center py-3">
